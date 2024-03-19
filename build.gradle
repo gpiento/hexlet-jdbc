@@ -1,9 +1,14 @@
 plugins {
-    id 'java'
+    id 'application'
 }
 
 group = 'io.hexlet'
 version = '1.0-SNAPSHOT'
+
+application {
+    // Define the main class for the application.
+    mainClass = 'hexlet.code.Application'
+}
 
 repositories {
     mavenCentral()
@@ -13,7 +18,7 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     // https://mvnrepository.com/artifact/com.h2database/h2
-    testImplementation 'com.h2database:h2:2.2.224'
+    implementation 'com.h2database:h2:2.2.224'
 
 }
 
