@@ -1,5 +1,8 @@
 package io.hexlet;
 
+import io.hexlet.dao.CourseDAO;
+import io.hexlet.model.Course;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -86,5 +89,21 @@ public class Application {
         System.out.println("DDD+++");
         dao.show();
         conn2.close();
+
+        try (Connection conn = DriverManager.getConnection("jdbc:h2:mem:hexlet")) {
+
+            String sql33 = "CREATE TABLE courses "
+                    + "(id BIGINT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(255), description TEXT)";
+
+            try (Statement statement = conn.createStatement()) {
+                statement.execute(sql33);
+            }
+
+            CourseDAO dao33 = new CourseDAO(conn);
+            Course course = new Course("Java", "Java is the best language");
+            dao.save(course);
+
+            System.out.println(dao33.getEntities());
+        }
     }
 }
